@@ -7,7 +7,7 @@ public class Main {
 		Node a = new Node("Aplha");
 		Node b = new Node(1,"Bravo");
 		Node c = new Node(2,"Charlie");
-		
+		Node d = new Node(3,"Delta");
 		DoublyLinkedList dl = new DoublyLinkedList();
 		
 		dl.add(a);
@@ -17,7 +17,7 @@ public class Main {
 		System.out.println(b.getPrev().getData());
 		System.out.println(a.getNext().getData());
 		System.out.println(b.getNext().getData());
-		System.out.println(dl.findNode(c));
+		System.out.println(dl.findNode(d));
 		System.out.println("Length of list is: " + dl.getSize());
 	}
 }

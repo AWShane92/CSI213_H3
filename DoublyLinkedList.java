@@ -51,21 +51,24 @@ public class DoublyLinkedList {
 		Node next = head;
 		int xi = next.getId();
 		int ni = node.getId();
+		boolean previous = node.getPrev() != null;
+		boolean nextNode = node.getNext() != null;
+		boolean inLink = previous || nextNode;
 		
 		if(next == node){
 			return true;
 		}
 		
-		while(xi < ni){
+		while(xi < ni){	
 			
-			if((xi+1) == ni){
-				
-				return true;
+			if((xi+1) == ni){	
+					if(inLink){
+						return true;
+					}
 			}	
 			
 			next = next.getNext();
-			xi = next.getId();
-			
+			xi = next.getId();			
 		}
 		
 		return false;
