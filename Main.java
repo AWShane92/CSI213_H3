@@ -14,14 +14,10 @@ public class Main {
 		dl.add(b);
 		dl.add(c);
 		
-		
-		System.out.println(a.getNext().getData());
 		System.out.println(b.getPrev().getData());
-		/*System.out.println(c.getData());
-		System.out.println(c.getPrev().getData());
-		System.out.println(c.getNext().getData());
-		*/
-		
+		System.out.println(a.getNext().getData());
+		System.out.println(b.getNext().getData());
+		System.out.println(dl.findNode(c));
 		System.out.println("Length of list is: " + dl.getSize());
 	}
 }

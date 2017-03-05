@@ -22,26 +22,21 @@ public class DoublyLinkedList {
 		}else{
 			
 			Node next = head.getNext();
-			int hi = head.getId();
-			int xi = node.getId();
+			int xi = next.getId();
+			int ni = node.getId();
 			
-			System.out.println(head.getData());
-			System.out.println(head.getId());
-			while(hi < xi){
+			while(xi < ni){
 				
-				if((hi + 1) == xi){
+				if((xi + 1) == ni){
 					next.setNext(node);
 					node.setPrev(next);
 					size++;
 				}
 				
 				next = next.getNext();
-				//hi = next.getId();
-				
-			}
-			
-		}
-		
+				xi = next.getId();				
+			}			
+		}	
 	}
 	public void setHead(Node head){
 		this.head = head;
@@ -53,7 +48,28 @@ public class DoublyLinkedList {
 	
 	public boolean findNode(Node node){
 		
-		return true;
+		Node next = head;
+		int xi = next.getId();
+		int ni = node.getId();
+		
+		if(next == node){
+			return true;
+		}
+		
+		while(xi < ni){
+			
+			if((xi+1) == ni){
+				
+				return true;
+			}	
+			
+			next = next.getNext();
+			xi = next.getId();
+			
+		}
+		
+		return false;
+	
 	}
 
 }
