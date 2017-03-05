@@ -10,9 +10,10 @@ public class Node {
 	
 	
 	//Constructor
-	public Node(){
+	public Node(String data){
 		this.id = 0;
-		this.data = "empty";
+		this.previous = null;
+		this.data = data;
 		this.next = null;
 		
 	}
