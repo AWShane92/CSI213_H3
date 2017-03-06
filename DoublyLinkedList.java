@@ -21,22 +21,59 @@ public class DoublyLinkedList {
 			size++;
 		}else{
 			
-			Node next = head.getNext();
-			int xi = next.getId();
+			Node link = head.getNext();
+			Node temp = null;
+			int li = link.getId();
 			int ni = node.getId();
 			
-			while(xi < ni){
-				
-				if((xi + 1) == ni){
-					next.setNext(node);
-					node.setPrev(next);
+			while(li < ni){
+					
+				if(link.getNext()==null){
+					link.setNext(node);
+					node.setPrev(link);
+					size++;
+				}
+				else if((li + 1) == ni){
+					temp = link.getNext();
+					link.setNext(node);
+					node.setPrev(link);
+					node.setNext(temp);
 					size++;
 				}
 				
-				next = next.getNext();
-				xi = next.getId();				
+				link = link.getNext();
+				li = link.getId();				
 			}			
 		}	
+	}
+	
+	public void delete(Node node){
+		
+		if(size == 0){
+			return;
+		}
+		else if(head != null){
+			if(head.getId()==node.getId()){
+				head = null;
+			}
+		}else{
+		
+			Node deleteNode = head;
+			int di = deleteNode.getId();
+			int ni = node.getId();
+			boolean inLink = node.getPrev() != null || node.getNext() != null;
+		
+			if(inLink){
+			
+				while(di < ni){
+					if((di+1)==ni){
+					
+					
+					}		
+				}	
+			}
+		}
+		
 	}
 	public void setHead(Node head){
 		this.head = head;
@@ -51,26 +88,24 @@ public class DoublyLinkedList {
 		Node next = head;
 		int xi = next.getId();
 		int ni = node.getId();
-		boolean previous = node.getPrev() != null;
-		boolean nextNode = node.getNext() != null;
-		boolean inLink = previous || nextNode;
+		boolean inLink = node.getPrev() != null || node.getNext() != null;
 		
 		if(next == node){
 			return true;
 		}
 		
-		while(xi < ni){	
+		if(inLink){
 			
-			if((xi+1) == ni){	
-					if(inLink){
+			while(xi < ni){	
+			
+				if((xi+1) == ni){	
 						return true;
-					}
-			}	
+				}	
 			
-			next = next.getNext();
-			xi = next.getId();			
+				next = next.getNext();
+				xi = next.getId();			
+			}
 		}
-		
 		return false;
 	
 	}

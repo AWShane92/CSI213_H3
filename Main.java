@@ -11,12 +11,13 @@ public class Main {
 		DoublyLinkedList dl = new DoublyLinkedList();
 		
 		dl.add(a);
-		dl.add(b);
+		dl.add(d);
 		dl.add(c);
+		dl.add(b);
 		
-		System.out.println(b.getPrev().getData());
+		//System.out.println(b.getPrev().getData());
 		System.out.println(a.getNext().getData());
-		System.out.println(b.getNext().getData());
+		//System.out.println(b.getNext().getData());
 		System.out.println(dl.findNode(d));
 		System.out.println("Length of list is: " + dl.getSize());
 	}
