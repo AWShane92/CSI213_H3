@@ -11,23 +11,45 @@ public class DoublyLinkedList {
 	
 	public void add(Node node){
 		
+		Node link = head;
+		Node temp = null;
+		
 		if(head == null){
 			head = node;
 			size++;
 		}
-		else if(size == 1){		
-			head.setNext(node);
-			node.setPrev(head);
-			size++;
-		}else{
+		else if(link.getId() > node.getId()){
 			
-			Node link = head.getNext();
-			Node temp = null;
+			int li = link.getId();
+			int ni = node.getId();
+			
+			while(li > ni){
+				
+				if(link.getPrev() == null){
+					link.setPrev(node);
+					node.setNext(link);
+					size++;
+				}else if ((ni + 1) == li){
+					
+					temp = link.getPrev();
+					link.setPrev(node);
+					node.setPrev(temp);
+					node.setNext(link);
+					size++;
+				}
+				
+				link = link.getPrev();
+				li = link.getId();
+				
+			}
+		}
+		else{
+			
 			int li = link.getId();
 			int ni = node.getId();
 			
 			while(li < ni){
-					
+				
 				if(link.getNext()==null){
 					link.setNext(node);
 					node.setPrev(link);
@@ -43,38 +65,50 @@ public class DoublyLinkedList {
 				
 				link = link.getNext();
 				li = link.getId();				
-			}			
-		}	
+			}
+			
+		}		
 	}
 	
 	public void delete(Node node){
 		
+		Node link = head;
+		Node temp = null;
+		boolean inLink = node.getPrev() != null || node.getNext() != null;
+		
 		if(size == 0){
+			System.out.println("The list is Empty");
 			return;
-		}
-		else if(head != null){
-			if(head.getId()==node.getId()){
-				head = null;
-			}
-		}else{
-		
-			Node deleteNode = head;
-			int di = deleteNode.getId();
-			int ni = node.getId();
-			boolean inLink = node.getPrev() != null || node.getNext() != null;
-		
-			if(inLink){
 			
-				while(di < ni){
-					if((di+1)==ni){
+		}
+		else if(this.head == node){
+			
+			temp = head.getNext();
+			head.setNext(null);
+			head = temp;
+			head.setPrev(null);
+			size = size - 1;
+		}
+		else if(inLink){
+	
+			int li = link.getId();
+			int ni = node.getId();
+			
+			while(li < ni){
 					
-					
-					}		
-				}	
+					if(li + 1 == ni){
+						temp = node.getNext();
+						link.setNext(temp);
+						temp.setPrev(link);
+						node.setPrev(null);
+						node.setNext(null);
+						size= size - 1;
+						
+					}
+				
+				}
 			}
 		}
-		
-	}
 	public void setHead(Node head){
 		this.head = head;
 	}

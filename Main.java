@@ -10,15 +10,21 @@ public class Main {
 		Node d = new Node(3,"Delta");
 		DoublyLinkedList dl = new DoublyLinkedList();
 		
-		dl.add(a);
-		dl.add(d);
 		dl.add(c);
+		dl.add(d);
 		dl.add(b);
-		
-		//System.out.println(b.getPrev().getData());
+		dl.add(a);
+
+		System.out.println(b.getPrev().getData());
 		System.out.println(a.getNext().getData());
-		//System.out.println(b.getNext().getData());
+		System.out.println(b.getNext().getData());
 		System.out.println(dl.findNode(d));
+		System.out.println("Length of list is: " + dl.getSize());
+		
+		dl.delete(c);
+		dl.delete(b);
+		System.out.println(dl.findNode(b));
+		System.out.println(dl.findNode(c));
 		System.out.println("Length of list is: " + dl.getSize());
 	}
 }
