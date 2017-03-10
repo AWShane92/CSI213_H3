@@ -51,7 +51,7 @@ public class Node {
 	}
 	public void print(){
 		
-		System.out.println("This data is:"+ this.data);
+		System.out.println("This data is: "+ this.id+" "+ this.data);
 	}
 	
 }
