@@ -54,4 +54,14 @@ public class Node {
 		System.out.println("This data is: "+ this.id+" "+ this.data);
 	}
 	
+	public int compareTo(Node node){
+		
+		return this.data.compareTo(node.getData());
+	}
+	
+	public boolean inLink(){
+		
+		return (this.next != null) || (this.previous != null);
+	}
+	
 }

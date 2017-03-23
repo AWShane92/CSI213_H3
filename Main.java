@@ -12,17 +12,19 @@ public class Main {
 		Node e = new Node(4,"Echo");
 		DoublyLinkedList dll = new DoublyLinkedList();
 		
-		dll.add(c);
+		dll.add(a);	
+		dll.add(b);
 		dll.add(e);
 		dll.add(d);
-		dll.add(b);
-		dll.add(a);
-		//Adds node of same variable.
+		dll.add(c);
 		dll.add(b2);
+		
 		dll.printList();
 		
-		dll.deleteList();
-		dll.isEmpty();
-		
+		System.out.println(dll.getHead().getData());
+		System.out.println(dll.getTail().getData());
+		System.out.println(dll.findNode(a));
+		System.out.println(dll.findNode(c));
+		System.out.println(dll.findNode(e));
 	}
 }
