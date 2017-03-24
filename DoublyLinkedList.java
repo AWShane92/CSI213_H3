@@ -6,6 +6,7 @@ public class DoublyLinkedList {
 	private Node tail = null;
 	private int size = 0;
 	
+	//Getters and Setters
 	public Node getHead(){
 		return this.head;
 	}
@@ -24,66 +25,85 @@ public class DoublyLinkedList {
 	public int getSize(){
 		return this.size;
 	}
-	
-	public void add(Node node){
+	//Methods
+	public void add(Node newNode){
 		
-		if(node == null){	
+		//Returns if the newNode added has no data.
+		if(newNode == null){	
 			return;
 		}
+		//Creates first node in list if the list is empty.
 		if(this.isEmpty()){
-			head = tail = node;
+			head = tail = newNode;
 			size++;		
 
-		}else if(head == tail){
+		}
+		/*Checks to see if there is only one node in the list
+		 * and compares it to the head and the tail. 
+		 */
+		else if(head == tail){
 			
-				if(head.compareTo(node) > 0){
-					head.setPrev(node);
-					this.head = node;
-					node.setNext(tail);
+				if(head.compareTo(newNode) > 0){
+					head.setPrev(newNode);
+					this.head = newNode;
+					this.head.setNext(tail);
+					size++;
 				}else{
-					tail.setNext(node);
-					this.tail = node;
-					node.setPrev(head);
+					tail.setNext(newNode);
+					this.tail = newNode;
+					this.tail.setPrev(head);
+					size++;
 				}
-			size++;
-		}else{	
+			
+		}
+		//Adds a node in the list in the proper order.	 
+		else{	
 		Node link = head;
 		Node temp = null;
 		
 		while(link != null){
-			
-			if(this.head.compareTo(node) > 0){
-				head.setPrev(node);
-				node.setNext(head);
-				this.head = node;
+			//Compares the node to head if head is larger newNode becomes new head.
+			if(this.head.compareTo(newNode) > 0){
+				this.head.setPrev(newNode);
+				newNode.setNext(head);
+				this.head = newNode;
 				size++;	
 				
 			}
-			else if(this.tail.compareTo(node) < 0){
-				tail.setNext(node);
-				node.setPrev(tail);
-				this.tail = node;
+			//Compares node to tail if the tail is smaller newNode becomes new tail.
+			else if(this.tail.compareTo(newNode) < 0){
+				this.tail.setNext(newNode);
+				newNode.setPrev(tail);
+				this.tail = newNode;
 				size++;				
 			}
 			else{
-				
-				if((link.compareTo(node) < 0)&&(link.getNext().compareTo(node) > 0)){
+				/*Organizes the nodes in appropriate order, checks current node
+				 * if newNode is greater than  current node being compareTo
+				 * and is less than that node next, then it inserts that newNode
+				 * into the list in that position. 
+				 */
+				if((link.compareTo(newNode) < 0)&&(link.getNext().compareTo(newNode) > 0)){
 					temp = link.getNext();
-					link.setNext(node);
-					node.setPrev(link);
-					node.setNext(temp);
-					size++;	
+					link.setNext(newNode);
+					newNode.setPrev(link);
+					newNode.setNext(temp);
+					size++;
+						
 				}
-				else if((link.compareTo(node) == 0)){
+				/*If newNode has data similar to an element already in the list
+				 * then insert the newNode after that element.
+				 */
+				else if((link.compareTo(newNode) == 0)){
 					temp = link.getNext();
-					link.setNext(node);
-					node.setPrev(link);
-					node.setNext(temp);	
-					size++;	
+					link.setNext(newNode);
+					newNode.setPrev(link);
+					newNode.setNext(temp);	
+					size++;
 				}
-				
+					
 			}
-			temp = link;
+			//Loops thru list to add node. 
 			link = link.getNext();
 			
 			}	
@@ -156,17 +176,18 @@ public class DoublyLinkedList {
 		
 	public boolean findNode(Node node){
 		
-		Node link = head;
-		
+		Node find = head;
+		//Checks if the node is in the list
 		if(node.inLink()){
 			
-			while(link != null){
-				
-				if(link.compareTo(node) == 0){		
+			//loop to cycle thru list
+			while(find != null){
+				//Returns true if find is equal to node wanted to be found. 
+				if(find.compareTo(node) == 0){		
 					return true;
 				}
 				
-				link = link.getNext();
+				find = find.getNext();
 			}
 		}
 		
@@ -176,8 +197,8 @@ public class DoublyLinkedList {
 	
 	public void printList(){
 		
-		Node temp = head;
-		
+		Node temp = head;	
+		//Prints list forward.
 		while(temp != null){
 			temp.print();
 			temp = temp.getNext();			
@@ -187,13 +208,14 @@ public class DoublyLinkedList {
 	public void reverseList(){
 		
 		Node temp = tail;
-		
+		//prints list backward
 		while(temp != null){	
 			temp.print();
 			temp = temp.getPrev();			
 		}
 	}
 	
+	//Checks if the list is empty
 	public boolean isEmpty(){
 		if(head== null && tail == null){
 			return true;
