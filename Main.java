@@ -12,19 +12,33 @@ public class Main {
 		Node e = new Node(4,"Echo");
 		DoublyLinkedList dll = new DoublyLinkedList();
 		
+		dll.add(c);
 		dll.add(a);	
 		dll.add(b);
 		dll.add(e);
 		dll.add(d);
-		dll.add(c);
 		dll.add(b2);
 		
 		dll.printList();
-		
+		System.out.println(" ");
 		System.out.println(dll.getHead().getData());
+		System.out.println(dll.getHead().getNext().getData());
 		System.out.println(dll.getTail().getData());
+		System.out.println(dll.getTail().getPrev().getData());
+		
+		System.out.println(" ");
 		System.out.println(dll.findNode(a));
 		System.out.println(dll.findNode(c));
 		System.out.println(dll.findNode(e));
+		System.out.println(" ");
+		dll.delete(a);
+		dll.delete(c);
+		dll.delete(e);
+		System.out.println(dll.findNode(a));
+		System.out.println(dll.findNode(c));
+		System.out.println(dll.findNode(e));
+		System.out.println(" ");
+		dll.reverseList();
+		
 	}
 }

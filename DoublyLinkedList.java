@@ -39,9 +39,11 @@ public class DoublyLinkedList {
 				if(head.compareTo(node) > 0){
 					head.setPrev(node);
 					this.head = node;
+					node.setNext(tail);
 				}else{
 					tail.setNext(node);
 					this.tail = node;
+					node.setPrev(head);
 				}
 			size++;
 		}else{	
@@ -54,13 +56,14 @@ public class DoublyLinkedList {
 				head.setPrev(node);
 				node.setNext(head);
 				this.head = node;
+				size++;	
 				
 			}
 			else if(this.tail.compareTo(node) < 0){
 				tail.setNext(node);
 				node.setPrev(tail);
 				this.tail = node;
-				
+				size++;				
 			}
 			else{
 				
@@ -69,13 +72,16 @@ public class DoublyLinkedList {
 					link.setNext(node);
 					node.setPrev(link);
 					node.setNext(temp);
-				}else if((link.compareTo(node) == 0)&&(link.getNext().compareTo(node) > 0)){
+					size++;	
+				}
+				else if((link.compareTo(node) == 0)){
 					temp = link.getNext();
 					link.setNext(node);
 					node.setPrev(link);
-					node.setNext(temp);			
+					node.setNext(temp);	
+					size++;	
 				}
-				size++;	
+				
 			}
 			temp = link;
 			link = link.getNext();
@@ -89,29 +95,41 @@ public class DoublyLinkedList {
 		Node link = head;
 		Node temp = null;
 		
-		//if size is 0 returns list is empty. 
+		//returns "The list is empty" is the boolean is true . 
 		if(this.isEmpty()){
 			System.out.println("The list is Empty");
 			return;	
-		}
-		//if the head is the node that wants to be deleted. 
-		else if(this.head == node){
-			/*Gets heads next node set it to temp
-			 * sets head next to null and set the temp to the new head
-			 * Sets the new head previous to null.
-			 */
-			temp = head.getNext();
-			head.setNext(null);
-			head = temp;
-			head.setPrev(null);
-			size--;
 		}
 		//If node is not in list return.
 		else if(!node.inLink()){ 
 			System.out.println("This node" + node.getData() + "is not in this list");
 			return;
 		}
-		//If node is in list do. 
+		//if the head is the node that wants to be deleted. 
+		else if(this.head.compareTo(node) == 0){
+			/*Gets heads next node set it to temp
+			 * sets head next to null and set the temp to the new head
+			 * Sets the new head previous to null.
+			 */
+			temp = head.getNext();
+			head.setNext(null);
+			this.head = temp;
+			head.setPrev(null);
+			size--;
+		}
+		//if the tail is the node that wants to be deleted. 
+		else if(this.tail.compareTo(node) == 0){
+			/*Gets tail prev node set it to temp
+			 * sets tail next to null and set the temp to the new head
+			 * Sets the new tail next to null.
+			 */
+			temp = tail.getPrev();
+			tail.setPrev(null);
+			this.tail = temp;
+			tail.setNext(null);		
+			size--;
+		}
+			//If node is in list do. 
 		else if(node.inLink()){
 			
 			//Since list is in order traverse list forward.
@@ -125,7 +143,8 @@ public class DoublyLinkedList {
 						node.setNext(null);		
 						size--;
 						return;
-					}			
+					}
+					link = link.getNext();
 				}
 			
 			}
@@ -145,9 +164,9 @@ public class DoublyLinkedList {
 				
 				if(link.compareTo(node) == 0){		
 					return true;
-				}else{
-					return false;
 				}
+				
+				link = link.getNext();
 			}
 		}
 		
@@ -169,8 +188,7 @@ public class DoublyLinkedList {
 		
 		Node temp = tail;
 		
-		while(temp != null){
-			
+		while(temp != null){	
 			temp.print();
 			temp = temp.getPrev();			
 		}
