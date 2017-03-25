@@ -86,22 +86,20 @@ public class DoublyLinkedList {
 					link.setNext(newNode);
 					newNode.setPrev(link);
 					newNode.setNext(temp);
-					temp.setPrev(newNode);
-					
-						
+					temp.setPrev(newNode);			
 				}
 				/*If newNode has data similar to an element already in the list
 				 * then insert the newNode after that element.
 				 */
-				/*else if(link.compareTo(newNode) == 0){
-					
+				else if((link.compareTo(newNode) == 0) && (link != newNode)){	
+						
 					temp = link.getNext();
 					link.setNext(newNode);
-					newNode.setNext(temp);
 					newNode.setPrev(link);
+					newNode.setNext(temp);	
 					temp.setPrev(newNode);
 					
-				}*/
+				}
 					
 			}
 			//Loops thru list to add node. 
@@ -164,8 +162,7 @@ public class DoublyLinkedList {
 						return;
 					}
 					link = link.getNext();
-				}
-			
+				}		
 			}
 		}
 	public void deleteList(){
@@ -188,10 +185,8 @@ public class DoublyLinkedList {
 				
 				find = find.getNext();
 			}
-		}
-		
-		return false;
-		
+		}	
+		return false;	
 	}
 	
 	public void printList(){
@@ -234,16 +229,16 @@ public class DoublyLinkedList {
 			return false;
 		}
 	}
-public int size(){
+	public int size(){
 	
-	int counter = 0;
-	Node temp = head;
+		int counter = 0;
+		Node temp = head;
 	
-	while(temp != null){
-		counter++;
-		temp = temp.getNext();
-	}
-	this.size = counter;
-	return this.size;
+		while(temp != null){
+			counter++;
+			temp = temp.getNext();
+		}
+		this.size = counter;
+		return this.size;
 }
 }

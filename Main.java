@@ -17,7 +17,7 @@ public class Main {
 		dll.add(b);
 		dll.add(e);
 		dll.add(d);
-		//dll.add(b2);
+		dll.add(b2);
 		
 		dll.printList();
 		System.out.println(" ");
