@@ -9,7 +9,7 @@ public class Node {
 	private int id;
 	
 	
-	//Constructor
+	//Constructors
 	public Node(String data){
 		this.id = 0;
 		this.previous = null;
@@ -23,7 +23,6 @@ public class Node {
 		this.previous = null;
 		this.next = null;
 	}	
-	
 	//Methods
 	public String getData(){
 		return this.data;
@@ -49,11 +48,12 @@ public class Node {
 	public void setId(int id){
 		this.id = id;
 	}
+	//Prints node's ID and data. 
 	public void print(){
 		
 		System.out.println("This data is: "+ this.id+" "+ this.data);
 	}
-	
+	//Compares the data of one node to another node. 
 	public int compareTo(Node node){
 		
 		return this.data.compareTo(node.getData());

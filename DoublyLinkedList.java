@@ -34,9 +34,7 @@ public class DoublyLinkedList {
 		}
 		//Creates first node in list if the list is empty.
 		if(this.isEmpty()){
-			head = tail = newNode;
-			size++;		
-
+			head = tail = newNode;	
 		}
 		/*Checks to see if there is only one node in the list
 		 * and compares it to the head and the tail. 
@@ -71,15 +69,12 @@ public class DoublyLinkedList {
 			else if(this.tail.compareTo(newNode) < 0){
 				this.tail.setNext(newNode);
 				newNode.setPrev(tail);
-				this.tail = newNode;
-							
-			}
-			
-			else{
-				/*Organizes the nodes in appropriate order, checks current node
-				 * if newNode is greater than  current node being compareTo
-				 * and is less than that node next, then it inserts that newNode
-				 * into the list in that position. 
+				this.tail = newNode;						
+			}else{
+				/* Organizes the nodes in appropriate order, checks current node
+				 * if newNode is greater than the current node being compareTo
+				 * and is less than that node's next, then it inserts that newNode
+				 * between the current node and the current node's next. 
 				 */
 				if((link.compareTo(newNode) < 0)&&(link.getNext().compareTo(newNode) > 0)){
 					temp = link.getNext();
@@ -91,20 +86,16 @@ public class DoublyLinkedList {
 				/*If newNode has data similar to an element already in the list
 				 * then insert the newNode after that element.
 				 */
-				else if((link.compareTo(newNode) == 0) && (link != newNode)){	
-						
+				else if((link.compareTo(newNode) == 0) && (link != newNode)){			
 					temp = link.getNext();
 					link.setNext(newNode);
 					newNode.setPrev(link);
 					newNode.setNext(temp);	
-					temp.setPrev(newNode);
-					
-				}
-					
+					temp.setPrev(newNode);			
+				}		
 			}
 			//Loops thru list to add node. 
-			link = link.getNext();
-			
+			link = link.getNext();		
 			}	
 		}
 	}
@@ -114,7 +105,7 @@ public class DoublyLinkedList {
 		Node link = head;
 		Node temp = null;
 		
-		//returns "The list is empty" is the boolean is true . 
+		//returns "The list is empty" if the list is empty. 
 		if(this.isEmpty()){
 			System.out.println("The list is Empty");
 			return;	
@@ -125,7 +116,7 @@ public class DoublyLinkedList {
 			return;
 		}
 		//if the head is the node that wants to be deleted. 
-		else if(this.head.compareTo(node) == 0){
+		else if(this.head == node){
 			/*Gets heads next node set it to temp
 			 * sets head next to null and set the temp to the new head
 			 * Sets the new head previous to null.
@@ -137,7 +128,7 @@ public class DoublyLinkedList {
 		
 		}
 		//if the tail is the node that wants to be deleted. 
-		else if(this.tail.compareTo(node) == 0){
+		else if(this.tail == node){
 			/*Gets tail prev node set it to temp
 			 * sets tail next to null and set the temp to the new head
 			 * Sets the new tail next to null.
@@ -147,13 +138,13 @@ public class DoublyLinkedList {
 			this.tail = temp;
 			tail.setNext(null);		
 		}
-			//If node is in list do. 
+		//If node is in list do. 
 		else if(node.inLink()){
 			
 			//Since list is in order traverse list forward.
 			while(link != null){
 
-					if(link.compareTo(node)== 0){
+					if(link == node){
 						temp = node.getNext();
 						link.setNext(temp);
 						temp.setPrev(link);
@@ -181,8 +172,7 @@ public class DoublyLinkedList {
 				//Returns true if find is equal to node wanted to be found. 
 				if(find.compareTo(node) == 0){		
 					return true;
-				}
-				
+				}		
 				find = find.getNext();
 			}
 		}	
@@ -191,7 +181,7 @@ public class DoublyLinkedList {
 	
 	public void printList(){
 		
-		//returns "The list is empty" is the boolean is true . 
+		//returns "The list is empty" if the list is empty.
 		if(this.isEmpty()){
 			System.out.println("The list is Empty");
 			return;	
@@ -207,7 +197,7 @@ public class DoublyLinkedList {
 	
 	public void reverseList(){
 		
-		//returns "The list is empty" is the boolean is true . 
+		//returns "The list is empty" if the list is empty.
 		if(this.isEmpty()){
 			System.out.println("The list is Empty");
 			return;	
@@ -230,7 +220,7 @@ public class DoublyLinkedList {
 		}
 	}
 	public int size(){
-	
+				
 		int counter = 0;
 		Node temp = head;
 	
@@ -240,5 +230,5 @@ public class DoublyLinkedList {
 		}
 		this.size = counter;
 		return this.size;
-}
+	}
 }
