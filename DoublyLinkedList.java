@@ -47,12 +47,10 @@ public class DoublyLinkedList {
 					tail.setPrev(newNode);
 					this.head = newNode;
 					this.head.setNext(tail);
-					size++;
 				}else{
 					head.setNext(newNode);
 					this.tail = newNode;
-					this.tail.setPrev(head);
-					size++;
+					this.tail.setPrev(head);		
 				}
 			
 		}
@@ -67,7 +65,6 @@ public class DoublyLinkedList {
 				this.head.setPrev(newNode);
 				newNode.setNext(head);
 				this.head = newNode;
-				size++;	
 				
 			}
 			//Compares node to tail if the tail is smaller newNode becomes new tail.
@@ -75,7 +72,7 @@ public class DoublyLinkedList {
 				this.tail.setNext(newNode);
 				newNode.setPrev(tail);
 				this.tail = newNode;
-				size++;				
+							
 			}
 			
 			else{
@@ -90,7 +87,7 @@ public class DoublyLinkedList {
 					newNode.setPrev(link);
 					newNode.setNext(temp);
 					temp.setPrev(newNode);
-					size++;
+					
 						
 				}
 				/*If newNode has data similar to an element already in the list
@@ -103,7 +100,7 @@ public class DoublyLinkedList {
 					newNode.setNext(temp);
 					newNode.setPrev(link);
 					temp.setPrev(newNode);
-					size++;
+					
 				}*/
 					
 			}
@@ -139,7 +136,7 @@ public class DoublyLinkedList {
 			head.setNext(null);
 			this.head = temp;
 			head.setPrev(null);
-			size--;
+		
 		}
 		//if the tail is the node that wants to be deleted. 
 		else if(this.tail.compareTo(node) == 0){
@@ -151,7 +148,6 @@ public class DoublyLinkedList {
 			tail.setPrev(null);
 			this.tail = temp;
 			tail.setNext(null);		
-			size--;
 		}
 			//If node is in list do. 
 		else if(node.inLink()){
@@ -165,7 +161,6 @@ public class DoublyLinkedList {
 						temp.setPrev(link);
 						node.setPrev(null);
 						node.setNext(null);		
-						size--;
 						return;
 					}
 					link = link.getNext();
@@ -201,6 +196,12 @@ public class DoublyLinkedList {
 	
 	public void printList(){
 		
+		//returns "The list is empty" is the boolean is true . 
+		if(this.isEmpty()){
+			System.out.println("The list is Empty");
+			return;	
+		}
+		
 		Node temp = head;	
 		//Prints list forward.
 		while(temp != null){
@@ -210,6 +211,12 @@ public class DoublyLinkedList {
 	}
 	
 	public void reverseList(){
+		
+		//returns "The list is empty" is the boolean is true . 
+		if(this.isEmpty()){
+			System.out.println("The list is Empty");
+			return;	
+		}
 		
 		Node temp = tail;
 		//prints list backward
@@ -227,16 +234,16 @@ public class DoublyLinkedList {
 			return false;
 		}
 	}
-public int size()
-{
+public int size(){
+	
 	int counter = 0;
 	Node temp = head;
 	
-	while(temp != null)
-	{
+	while(temp != null){
 		counter++;
 		temp = temp.getNext();
 	}
-	return counter;
+	this.size = counter;
+	return this.size;
 }
 }

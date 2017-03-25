@@ -39,5 +39,8 @@ public class Main {
 		System.out.println(dll.size());
 		System.out.println(" ");
 		dll.printList();
+		dll.deleteList();
+		System.out.println(" ");
+		dll.printList();
 	}
 }
