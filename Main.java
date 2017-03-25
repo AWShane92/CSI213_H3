@@ -17,15 +17,13 @@ public class Main {
 		dll.add(b);
 		dll.add(e);
 		dll.add(d);
-		dll.add(b2);
+		//dll.add(b2);
 		
 		dll.printList();
-		System.out.println(dll.getSize());
 		System.out.println(" ");
-		System.out.println(dll.getHead().getData());
-		System.out.println(dll.getHead().getNext().getData());
-		System.out.println(dll.getTail().getData());
-		System.out.println(dll.getTail().getPrev().getData());	
+		dll.reverseList();
+		System.out.println(" ");
+		System.out.println(dll.size());
 		System.out.println(" ");
 		System.out.println(dll.findNode(a));
 		System.out.println(dll.findNode(c));
@@ -37,9 +35,9 @@ public class Main {
 		System.out.println(dll.findNode(a));
 		System.out.println(dll.findNode(c));
 		System.out.println(dll.findNode(e));
-		System.out.println(dll.getSize());
 		System.out.println(" ");
-		dll.reverseList();
-		
+		System.out.println(dll.size());
+		System.out.println(" ");
+		dll.printList();
 	}
 }

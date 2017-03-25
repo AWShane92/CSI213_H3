@@ -44,12 +44,12 @@ public class DoublyLinkedList {
 		else if(head == tail){
 			
 				if(head.compareTo(newNode) > 0){
-					head.setPrev(newNode);
+					tail.setPrev(newNode);
 					this.head = newNode;
 					this.head.setNext(tail);
 					size++;
 				}else{
-					tail.setNext(newNode);
+					head.setNext(newNode);
 					this.tail = newNode;
 					this.tail.setPrev(head);
 					size++;
@@ -77,6 +77,7 @@ public class DoublyLinkedList {
 				this.tail = newNode;
 				size++;				
 			}
+			
 			else{
 				/*Organizes the nodes in appropriate order, checks current node
 				 * if newNode is greater than  current node being compareTo
@@ -88,19 +89,22 @@ public class DoublyLinkedList {
 					link.setNext(newNode);
 					newNode.setPrev(link);
 					newNode.setNext(temp);
+					temp.setPrev(newNode);
 					size++;
 						
 				}
 				/*If newNode has data similar to an element already in the list
 				 * then insert the newNode after that element.
 				 */
-				else if((link.compareTo(newNode) == 0)){
+				/*else if(link.compareTo(newNode) == 0){
+					
 					temp = link.getNext();
 					link.setNext(newNode);
+					newNode.setNext(temp);
 					newNode.setPrev(link);
-					newNode.setNext(temp);	
+					temp.setPrev(newNode);
 					size++;
-				}
+				}*/
 					
 			}
 			//Loops thru list to add node. 
@@ -223,5 +227,16 @@ public class DoublyLinkedList {
 			return false;
 		}
 	}
-
+public int size()
+{
+	int counter = 0;
+	Node temp = head;
+	
+	while(temp != null)
+	{
+		counter++;
+		temp = temp.getNext();
+	}
+	return counter;
+}
 }
